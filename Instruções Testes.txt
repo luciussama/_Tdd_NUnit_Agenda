@@ -1,3 +1,6 @@
 - Pacotes NUGET para testes com NUnit:
 *	NUnit
 *	NUnit3TestAdapter
+
+- Dicas para o .Net
+-	Dapper - Mapeador de dados, alternativa leve para o Entity Framework
