@@ -1,0 +1,3 @@
+- Pacotes NUGET para testes com NUnit:
+*	NUnit
+*	NUnit3TestAdapter
