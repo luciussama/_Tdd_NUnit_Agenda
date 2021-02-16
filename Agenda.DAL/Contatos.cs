@@ -14,7 +14,7 @@ namespace Agenda.DAL
 
         public Contatos()
         {
-            _strCon = ConfigurationManager.ConnectionStrings["connection"].ConnectionString;
+            _strCon = ConfigurationManager.ConnectionStrings["connectionTest"].ConnectionString;
         }
 
 
