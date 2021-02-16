@@ -25,6 +25,7 @@ namespace Agenda.UIDesktop
             string id = Guid.NewGuid().ToString();
 
             txtContatoSalvo.Text = "";
+
         }
     }
 }
