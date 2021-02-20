@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agenda.Domain", "Agenda.Dom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agenda.Repository", "Agenda.Repository\Agenda.Repository.csproj", "{79A063BE-D3FC-4F19-8E65-73FAFA9D80BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agenda.Repository.Test", "Agenda.Repository.Test\Agenda.Repository.Test.csproj", "{B3DBDEDE-922B-4211-AD2D-6D6BD3DC8A8A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{79A063BE-D3FC-4F19-8E65-73FAFA9D80BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79A063BE-D3FC-4F19-8E65-73FAFA9D80BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79A063BE-D3FC-4F19-8E65-73FAFA9D80BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3DBDEDE-922B-4211-AD2D-6D6BD3DC8A8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3DBDEDE-922B-4211-AD2D-6D6BD3DC8A8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3DBDEDE-922B-4211-AD2D-6D6BD3DC8A8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3DBDEDE-922B-4211-AD2D-6D6BD3DC8A8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

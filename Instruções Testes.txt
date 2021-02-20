@@ -2,6 +2,7 @@
 *	NUnit
 *	NUnit3TestAdapter
 *	AutoFixture (pacote para auxliar no preenchimento automático dos dados.)
+*	Moq (para "mockar" as classes)
 
 - Dicas para o .Net
 -	Dapper - Mapeador de dados, alternativa leve para o Entity Framework
