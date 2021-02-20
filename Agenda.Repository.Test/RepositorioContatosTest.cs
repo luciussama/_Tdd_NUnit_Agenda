@@ -33,6 +33,7 @@ namespace Agenda.Repository.Test
             var listTelefone = new List<ITelefone>();
             var telefoneId = Guid.NewGuid();
             var contatoId = Guid.NewGuid();
+
             //Mock da interface testada
             Mock<ITelefone> mTelefone = new Mock<ITelefone>();
             mTelefone.SetupGet(t => t.Id).Returns(telefoneId);
