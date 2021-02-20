@@ -27,9 +27,42 @@ namespace Agenda.Repository.Test
         }
 
         [Test]
-        public void Test()
+        public void DeveSerPossivelObterContatoComListaTelefone()
         {
+            //Arrange
+            var listTelefone = new List<ITelefone>();
+            var telefoneId = Guid.NewGuid();
+            var contatoId = Guid.NewGuid();
+            //Mock da interface testada
+            Mock<ITelefone> mTelefone = new Mock<ITelefone>();
+            mTelefone.SetupGet(t => t.Id).Returns(telefoneId);
+            mTelefone.SetupGet(t => t.Numero).Returns("11 99183-5879");
+            mTelefone.SetupGet(t => t.ContatoId).Returns(contatoId);
 
+            Mock<IContato> mContato = new Mock<IContato>();
+            mContato.SetupGet(c => c.Id).Returns(contatoId);
+            mContato.SetupGet(c => c.Nome).Returns("Sérgio");
+            mContato.SetupSet(c => c.Telefones = It.IsAny<List<ITelefone>>())
+                .Callback<List<ITelefone>>(t => listTelefone = t);
+
+            //Moq da função da classe a ser testada
+            _contatos.Setup(cs => cs.Obter(contatoId)).Returns(mContato.Object);
+            _telefones.Setup(ts => ts.ObterTodosDoContato(contatoId)).Returns(new List<ITelefone> { mTelefone.Object });
+
+            //Assert
+            //Tester os métodos da classe mockada
+            var contatoResultado = _repositorioContatos.ObterPorId(contatoId);
+            mContato.SetupGet(c => c.Telefones).Returns(listTelefone);
+
+
+            //Act
+            //Validar o retorno dos métodos mockados
+            Assert.AreEqual(mContato.Object.Id, contatoResultado.Id);
+            Assert.AreEqual(mContato.Object.Nome, contatoResultado.Nome);
+            Assert.AreEqual(1, mContato.Object.Telefones.Count);
+            Assert.AreEqual(mTelefone.Object.Numero, contatoResultado.Telefones[0].Numero);
+            Assert.AreEqual(mTelefone.Object.Id, contatoResultado.Telefones[0].Id);
+            Assert.AreEqual(mContato.Object.Id, contatoResultado.Telefones[0].ContatoId);
         }
         
         
