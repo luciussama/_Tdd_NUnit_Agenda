@@ -35,20 +35,21 @@ namespace Agenda.Repository.Test
             var contatoId = Guid.NewGuid();
 
             //Mock da interface testada
-            Mock<ITelefone> mTelefone = new Mock<ITelefone>();
-            mTelefone.SetupGet(t => t.Id).Returns(telefoneId);
-            mTelefone.SetupGet(t => t.Numero).Returns("11 99183-5879");
-            mTelefone.SetupGet(t => t.ContatoId).Returns(contatoId);
+            ITelefone mTelefone = ITelefoneConstr.Um().ValorPadrao()
+                .ComId(telefoneId)
+                .ComContatoId(contatoId)
+                .Construir();
 
-            Mock<IContato> mContato = new Mock<IContato>();
-            mContato.SetupGet(c => c.Id).Returns(contatoId);
-            mContato.SetupGet(c => c.Nome).Returns("Sérgio");
+            Mock<IContato> mContato = IContratoConstr.Um()
+                .ComId(contatoId).ComNome("Sérgio")
+                .Obter();
+
             mContato.SetupSet(c => c.Telefones = It.IsAny<List<ITelefone>>())
                 .Callback<List<ITelefone>>(t => listTelefone = t);
 
             //Moq da função da classe a ser testada
             _contatos.Setup(cs => cs.Obter(contatoId)).Returns(mContato.Object);
-            _telefones.Setup(ts => ts.ObterTodosDoContato(contatoId)).Returns(new List<ITelefone> { mTelefone.Object });
+            _telefones.Setup(ts => ts.ObterTodosDoContato(contatoId)).Returns(new List<ITelefone> { mTelefone });
 
             //Assert
             //Tester os métodos da classe mockada
@@ -61,8 +62,8 @@ namespace Agenda.Repository.Test
             Assert.AreEqual(mContato.Object.Id, contatoResultado.Id);
             Assert.AreEqual(mContato.Object.Nome, contatoResultado.Nome);
             Assert.AreEqual(1, mContato.Object.Telefones.Count);
-            Assert.AreEqual(mTelefone.Object.Numero, contatoResultado.Telefones[0].Numero);
-            Assert.AreEqual(mTelefone.Object.Id, contatoResultado.Telefones[0].Id);
+            Assert.AreEqual(mTelefone.Numero, contatoResultado.Telefones[0].Numero);
+            Assert.AreEqual(mTelefone.Id, contatoResultado.Telefones[0].Id);
             Assert.AreEqual(mContato.Object.Id, contatoResultado.Telefones[0].ContatoId);
         }
         
